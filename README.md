@@ -1,6 +1,6 @@
 # E-Commerce App Cratify
 
-A fully functional e-commerce web application built with React, Tailwind CSS, and various libraries to provide a seamless shopping experience. The app includes user authentication, product browsing, filtering, cart management, order placement, and checkout functionality.
+A fully functional e-commerce web application built with React, Tailwind CSS, React Router Dom, Tanstack query, Formik, Yup, and various libraries to provide a seamless shopping experience. The app includes user authentication, product browsing, filtering, cart management, order placement, and checkout functionality.
 
 ---
 
@@ -34,7 +34,7 @@ A fully functional e-commerce web application built with React, Tailwind CSS, an
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
 ![NextUI](https://img.shields.io/badge/NextUI-000000?style=for-the-badge&logo=nextui&logoColor=white)
-![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
+![React Router Dom](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
 ![React Query](https://img.shields.io/badge/React_Query-FF4154?style=for-the-badge&logo=react-query&logoColor=white)
 ![Formik](https://img.shields.io/badge/Formik-1A73E8?style=for-the-badge&logo=formik&logoColor=white)
 ![Yup](https://img.shields.io/badge/Yup-3178C6?style=for-the-badge&logo=yup&logoColor=white)

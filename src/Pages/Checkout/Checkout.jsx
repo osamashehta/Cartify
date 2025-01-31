@@ -66,7 +66,7 @@ function Checkout() {
               token: localStorage.getItem("userToken"),
             },
             params: {
-              url: "http://localhost:5173",
+              url: "https://cartify-ebon.vercel.app",
             },
           }
         );

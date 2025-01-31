@@ -1,6 +1,6 @@
 # E-Commerce App Cratify
 
-A fully functional e-commerce web application built with React, Tailwind CSS, React Router Dom, Tanstack query, Formik, Yup, and various libraries to provide a seamless shopping experience. The app includes user authentication, product browsing, filtering, cart management, order placement, and checkout functionality.
+A fully functional e-commerce web application built with React, Tailwind CSS, React Router Dom, Axios, Tanstack query, Formik, Yup, and various libraries to provide a seamless shopping experience. The app includes user authentication, product browsing, filtering, cart management, order placement, and checkout functionality.
 
 ---
 

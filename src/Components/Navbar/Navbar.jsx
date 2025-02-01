@@ -41,7 +41,7 @@ function Navbar() {
         </NavbarBrand>
 
         {userLogin ? (
-          <NavbarContent className="hidden sm:flex gap-4 0" justify="center">
+          <NavbarContent className="hidden sm:flex gap-4 " justify="center">
             <NavbarItem>
               <NavLink to="" color="foreground">
                 Home

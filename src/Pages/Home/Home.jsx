@@ -4,7 +4,7 @@ import CategorySlider from "../../Components/CategorySlider/CategorySlider";
 import MainSlider from "../../Components/MainSlider/MainSlider";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import CategoriesOptions from "../../Components/CategoriesOptions/CategoriesOptions";
+import Filter from "../../Components/Filter/Filter";
 
 function Home() {
   function getAllProducts() {
@@ -25,36 +25,30 @@ function Home() {
   }, [data]);
   console.log("tanstack category ", options);
 
-  function handleCategory(categoryName) {
+  function handleFilter(target) {
     console.log("hihihi");
-    if (categoryName == "All") {
+    if (target == "All" ) {
       setOptions(data);
-    } else {
+    } else if(target == "Men's Fashion" || target == "Women's Fashion"||target == "Electronics") {
       setOptions(
         data?.filter(
           (Product) =>
-            Product.category.name.toLowerCase() == categoryName.toLowerCase()
+            Product.category.name.toLowerCase() == target.toLowerCase()
         )
       );
+    } else if (target == "Electronics" || target == "Defacto"||target == "Adidas" ||target == "LC Waikiki"||target == "Samsung"||target == "Sony"||target == "Dell"){
+      setOptions(data?.filter((Product) => Product.brand.name.toLowerCase() == target.toLowerCase()));
     }
   }
 
-  function handleBrand(brandName) {
-    console.log("hihihi");
-    if (brandName == "All") {
-      setOptions(data);
-    } else {
-      setOptions(data?.filter((Product) => Product.brand.name == brandName));
-    }
-  }
+ 
 
   return (
     <>
       <MainSlider />
       <CategorySlider />
-      <CategoriesOptions
-        handleCategory={handleCategory}
-        handleBrand={handleBrand}
+      <Filter
+        handleFilter={handleFilter}
       />
       <AllProducts data={options} isLoading={isLoading} />
     </>

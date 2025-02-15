@@ -15,10 +15,10 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import Checkout from "./Pages/Checkout/Checkout";
 import AllOrders from "./Components/AllOrders/AllOrders";
-import Wishlist from "./Pages/Wishlist/Wishlist";
 import ForgetPassword from "./Pages/ForgetPassword/ForgetPassword";
 import ResetPassword from "./Pages/ResetPassword/ResetPassword";
 import VerifyResetCode from "./Pages/VerifyResetCode/VerifyResetCode";
+import WishList from "./Pages/WishList/WishList";
 
 const queryClient = new QueryClient();
 
@@ -113,7 +113,7 @@ const router = createBrowserRouter([
         path: "wishlist",
         element: (
           <ProtectedRoute>
-            <Wishlist />
+            <WishList />
           </ProtectedRoute>
         ),
       },
@@ -132,13 +132,10 @@ const router = createBrowserRouter([
 function App() {
   return (
     <>
-      <Toaster 
-
-toastOptions={{
-    duration: 1000,
-   
-}}
-
+      <Toaster
+        toastOptions={{
+          duration: 1000,
+        }}
       />
 
       <UserContextProvider>

@@ -72,7 +72,7 @@ const columns = [
   { name: "ACTIONS", uid: "actions" },
 ];
 
-function Wishlist() {
+function WishList() {
   // Fetch wishlist data
   let [wishlist, setWishlist] = useState(true);
   let [loading, setLoading] = useState([]);
@@ -228,4 +228,4 @@ function Wishlist() {
   );
 }
 
-export default Wishlist;
+export default WishList;

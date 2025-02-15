@@ -8,7 +8,7 @@ import {
   TableRow,
   TableCell,
   Tooltip,
-} from "@nextui-org/react";
+} from "@heroui/react";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
@@ -144,55 +144,52 @@ function Wishlist() {
   }
 
   // Render table cells
-  const renderCell = React.useCallback(
-    (item, columnKey) => {
-      const cellValue = item[columnKey];
+  const renderCell = React.useCallback((item, columnKey) => {
+    const cellValue = item[columnKey];
 
-      switch (columnKey) {
-        case "imageCover":
-          return (
-            <img
-              src={cellValue}
-              alt={item.title}
-              className="w-[100px] h-[100px] object-cover"
-            />
-          );
-        case "title":
-          return <p className="text-bold text-sm capitalize">{cellValue}</p>;
-        case "price":
-          return <p className="text-bold text-sm">{cellValue} EGP</p>;
-        case "actions":
-          return (
-            <div className="relative flex justify-center items-center gap-2">
-              <Link to={`/productdetails/${item?.category.name}/${item?.id}`}>
-                <Tooltip content="Details">
-                  <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
-                    <i className="fa-regular fa-eye"></i>
-                  </span>
-                </Tooltip>
-              </Link>
-              <Tooltip content="Add to cart">
-                <button onClick={() => AddProductToCart(item.id)}>
-                  <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
-                    <i className="fa-solid fa-cart-shopping"></i>
-                  </span>
-                </button>
+    switch (columnKey) {
+      case "imageCover":
+        return (
+          <img
+            src={cellValue}
+            alt={item.title}
+            className="w-[100px] h-[100px] object-cover"
+          />
+        );
+      case "title":
+        return <p className="text-bold text-sm capitalize">{cellValue}</p>;
+      case "price":
+        return <p className="text-bold text-sm">{cellValue} EGP</p>;
+      case "actions":
+        return (
+          <div className="relative flex justify-center items-center gap-2">
+            <Link to={`/productdetails/${item?.category.name}/${item?.id}`}>
+              <Tooltip content="Details">
+                <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
+                  <i className="fa-regular fa-eye"></i>
+                </span>
               </Tooltip>
-              <Tooltip color="danger" content="Delete">
-                <button onClick={() => RemoveProduct(item.id)}>
-                  <span className="text-lg text-danger cursor-pointer active:opacity-50">
-                    <DeleteIcon />
-                  </span>
-                </button>
-              </Tooltip>
-            </div>
-          );
-        default:
-          return cellValue;
-      }
-    },
-    [AddProductToCart, RemoveProduct]
-  );
+            </Link>
+            <Tooltip content="Add to cart">
+              <button onClick={() => AddProductToCart(item.id)}>
+                <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
+                  <i className="fa-solid fa-cart-shopping"></i>
+                </span>
+              </button>
+            </Tooltip>
+            <Tooltip color="danger" content="Delete">
+              <button onClick={() => RemoveProduct(item.id)}>
+                <span className="text-lg text-danger cursor-pointer active:opacity-50">
+                  <DeleteIcon />
+                </span>
+              </button>
+            </Tooltip>
+          </div>
+        );
+      default:
+        return cellValue;
+    }
+  }, []);
 
   if (isLoading || loading)
     return (

@@ -19,7 +19,6 @@ import ForgetPassword from "./Pages/ForgetPassword/ForgetPassword";
 import ResetPassword from "./Pages/ResetPassword/ResetPassword";
 import VerifyResetCode from "./Pages/VerifyResetCode/VerifyResetCode";
 import Wishlist from "./Pages/Wishlist/Wishlist";
-
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
@@ -141,6 +140,7 @@ function App() {
 
       <UserContextProvider>
         <QueryClientProvider client={queryClient}>
+
           <RouterProvider router={router} />
           <ReactQueryDevtools />
         </QueryClientProvider>

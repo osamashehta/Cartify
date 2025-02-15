@@ -9,7 +9,7 @@ import {
   NavbarMenu,
   NavbarMenuItem,
   Button,
-} from "@nextui-org/react";
+} from "@heroui/react";
 import { UserContext } from "../../Context/UserContext";
 import cart from "../../assets/shopping-cart.png";
 

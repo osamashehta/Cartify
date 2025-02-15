@@ -15,7 +15,7 @@ import React, { useState } from "react";
 
 // Icons
 
-function Wishlist() {
+function Wish() {
   const DeleteIcon = (props) => (
     <svg
       aria-hidden="true"
@@ -227,4 +227,4 @@ function Wishlist() {
   );
 }
 
-export default Wishlist;
+export default Wish;

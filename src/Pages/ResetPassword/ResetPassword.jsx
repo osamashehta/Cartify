@@ -10,7 +10,7 @@ import toast from "react-hot-toast";
 
 function ResetPassword() {
   const navigate = useNavigate();
-  const { userLogin, setuserLogin } = useContext(UserContext);
+  const {setuserLogin } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(false);
   const [isExist, setIsExist] = useState("");
   const initialValues = {

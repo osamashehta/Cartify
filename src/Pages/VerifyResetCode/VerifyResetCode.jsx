@@ -59,7 +59,7 @@ function VerifyResetCode() {
 
   return (
     <>
-      <h2 className="w-4/5 md:w-3/5 mx-auto mt-4 text-blue-700 text-center font-bold text-4xl">
+      <h2 className="w-4/5 md:w-3/5 mx-auto mt-4 text-blue-700 text-center font-semibold text-3xl">
         Enter reset code
       </h2>
       {error && (

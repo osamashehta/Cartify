@@ -18,7 +18,6 @@ import AllOrders from "./Components/AllOrders/AllOrders";
 import ForgetPassword from "./Pages/ForgetPassword/ForgetPassword";
 import ResetPassword from "./Pages/ResetPassword/ResetPassword";
 import VerifyResetCode from "./Pages/VerifyResetCode/VerifyResetCode";
-import WishList from "./Pages/WishList/WishList";
 
 const queryClient = new QueryClient();
 
@@ -109,14 +108,7 @@ const router = createBrowserRouter([
           </ProtectedRoute>
         ),
       },
-      {
-        path: "wishlist",
-        element: (
-          <ProtectedRoute>
-            <WishList />
-          </ProtectedRoute>
-        ),
-      },
+      
       {
         path: "*",
         element: (

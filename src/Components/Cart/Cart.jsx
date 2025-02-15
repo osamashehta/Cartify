@@ -4,6 +4,7 @@ import CartData from "../CartData/CartData";
 import { useNavigate } from "react-router-dom";
 import cart from "../../assets/cart.png";
 import Loader from "./../Loader/Loader";
+import toast from "react-hot-toast";
 
 function Cart() {
   const navigate = useNavigate();
@@ -28,9 +29,7 @@ function Cart() {
           },
         }
       );
-      console.log("Cart data to send", data.data);
-      console.log("Cart ID", data);
-      console.log("Cart Owner", data.data.cartOwner);
+
       localStorage.setItem("cartOwner", data.data.cartOwner);
       setCartId(data.cartId);
       setCartData(data.data);
@@ -38,7 +37,6 @@ function Cart() {
 
       setIsLoading(false);
     } catch (error) {
-      console.log(error);
       setIsLoading(false);
     }
   }
@@ -56,13 +54,11 @@ function Cart() {
       setCartData(data.data);
       setNumOfCartItems(data.numOfCartItems);
     } catch (error) {
-      console.log(error);
+      toast.error(error);
     }
   }
 
   async function updateCartProductQuantity(itemId, count) {
-    console.log("count", count);
-
     try {
       const { data } = await axios.put(
         `https://ecommerce.routemisr.com/api/v1/cart/${itemId}`,
@@ -78,7 +74,7 @@ function Cart() {
       setCartData(data.data);
       setNumOfCartItems(data.numOfCartItems);
     } catch (error) {
-      console.log(error);
+      toast.error(error);
     }
   }
 
@@ -94,14 +90,11 @@ function Cart() {
           },
         }
       );
-      console.log("Cart data", data.data);
       setCartId(null);
       setCartData(null);
       setNumOfCartItems(0);
-      console.log("data.data", data.data.products);
       setIsLoading(false);
     } catch (error) {
-      console.log(error);
       setIsLoading(false);
     }
   }

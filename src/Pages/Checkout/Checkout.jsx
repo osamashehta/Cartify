@@ -24,8 +24,6 @@ function Checkout() {
 
   const onSubmit = async () => {
     setIsLoading(true);
-    console.log("errors.pay ", errors.paymentMethod);
-    console.log("values.paymentMethod ", values.paymentMethod);
 
     if (values.paymentMethod === "cash") {
       try {
@@ -38,7 +36,6 @@ function Checkout() {
             },
           }
         );
-        console.log("cash", data);
         if (data.data.status === "success") {
           setCartItem(data.data.cartItems);
           toast.success(data.data.status);
@@ -70,8 +67,7 @@ function Checkout() {
             },
           }
         );
-        console.log("stripe data", data);
-        console.log("url", data.session.url);
+
         if (data.status === "success") {
           toast.success(data.status);
         }

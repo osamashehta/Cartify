@@ -26,7 +26,6 @@ function Login() {
         "https://ecommerce.routemisr.com/api/v1/auth/signin",
         values
       );
-      console.log(data);
       if (data.message === "success") {
         localStorage.setItem("userToken", data.token);
         setuserLogin(data.token);
@@ -200,12 +199,20 @@ function Login() {
           >
             Log In
           </Button>
-          <Link
-            to="/register"
-            className="col-span-2 text-blue-700  text-base text-center"
-          >
-            Create new account
-          </Link>
+          <div className="col-span-2 flex justify-evenly ">
+            <Link
+              to="/register"
+              className=" text-blue-700  text-base text-center"
+            >
+              Create new account
+            </Link>
+            <Link
+              to="/forgetpassword"
+              className=" text-blue-700  text-base text-center"
+            >
+              Forget Password
+            </Link>
+          </div>
         </div>
       </form>
     </>

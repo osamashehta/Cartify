@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import AddToCart from "../AddToCart/AddToCart";
+import AddToWishList from "../AddToWishList/AddToWishList";
 
 function Card({ product, responsive }) {
   return (
@@ -31,10 +32,6 @@ function Card({ product, responsive }) {
                 )}
                 <span>{product?.ratingsAverage}</span>
               </div>
-
-              <div className="bg-blue-200  rounded-md py-1 px-2 mt-1 w-fit group/heart absolute top-[0%] right-[2%]">
-                <i className="fa-solid fa-heart text-blue-500 group-hover/heart:text-blue-700 group-hover/heart:scale-125 transition-all duration-500"></i>
-              </div>
             </div>
             <div className="price text-xs md:text-base  m-1  flex justify-between  ">
               <span>
@@ -47,6 +44,7 @@ function Card({ product, responsive }) {
               </span>
             </div>
           </Link>
+          <AddToWishList productId={product.id} />
 
           <AddToCart
             hidden={

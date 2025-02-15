@@ -15,6 +15,11 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import Checkout from "./Pages/Checkout/Checkout";
 import AllOrders from "./Components/AllOrders/AllOrders";
+import Wishlist from "./Pages/Wishlist/Wishlist";
+import ForgetPassword from "./Pages/ForgetPassword/ForgetPassword";
+import ResetPassword from "./Pages/ResetPassword/ResetPassword";
+import VerifyResetCode from "./Pages/VerifyResetCode/VerifyResetCode";
+
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
@@ -35,6 +40,30 @@ const router = createBrowserRouter([
         element: (
           <ProtectedAuthRoute>
             <Login />
+          </ProtectedAuthRoute>
+        ),
+      },
+      {
+        path: "forgetpassword",
+        element: (
+          <ProtectedAuthRoute>
+            <ForgetPassword />
+          </ProtectedAuthRoute>
+        ),
+      },
+      {
+        path: "resetpassword",
+        element: (
+          <ProtectedAuthRoute>
+            <ResetPassword />
+          </ProtectedAuthRoute>
+        ),
+      },
+      {
+        path: "resetcode",
+        element: (
+          <ProtectedAuthRoute>
+            <VerifyResetCode />
           </ProtectedAuthRoute>
         ),
       },
@@ -81,6 +110,14 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "wishlist",
+        element: (
+          <ProtectedRoute>
+            <Wishlist />
+          </ProtectedRoute>
+        ),
+      },
+      {
         path: "*",
         element: (
           <ProtectedRoute>
@@ -95,7 +132,14 @@ const router = createBrowserRouter([
 function App() {
   return (
     <>
-      <Toaster />
+      <Toaster 
+
+toastOptions={{
+    duration: 1000,
+   
+}}
+
+      />
 
       <UserContextProvider>
         <QueryClientProvider client={queryClient}>

@@ -23,33 +23,43 @@ function Home() {
       setOptions(data);
     }
   }, [data]);
-  console.log("tanstack category ", options);
 
   function handleFilter(target) {
-    console.log("hihihi");
-    if (target == "All" ) {
+    if (target == "All") {
       setOptions(data);
-    } else if(target == "Men's Fashion" || target == "Women's Fashion"||target == "Electronics") {
+    } else if (
+      target == "Men's Fashion" ||
+      target == "Women's Fashion" ||
+      target == "Electronics"
+    ) {
       setOptions(
         data?.filter(
           (Product) =>
             Product.category.name.toLowerCase() == target.toLowerCase()
         )
       );
-    } else if (target == "Electronics" || target == "Defacto"||target == "Adidas" ||target == "LC Waikiki"||target == "Samsung"||target == "Sony"||target == "Dell"){
-      setOptions(data?.filter((Product) => Product.brand.name.toLowerCase() == target.toLowerCase()));
+    } else if (
+      target == "Electronics" ||
+      target == "Defacto" ||
+      target == "Adidas" ||
+      target == "LC Waikiki" ||
+      target == "Samsung" ||
+      target == "Sony" ||
+      target == "Dell"
+    ) {
+      setOptions(
+        data?.filter(
+          (Product) => Product.brand.name.toLowerCase() == target.toLowerCase()
+        )
+      );
     }
   }
-
- 
 
   return (
     <>
       <MainSlider />
       <CategorySlider />
-      <Filter
-        handleFilter={handleFilter}
-      />
+      <Filter handleFilter={handleFilter} />
       <AllProducts data={options} isLoading={isLoading} />
     </>
   );

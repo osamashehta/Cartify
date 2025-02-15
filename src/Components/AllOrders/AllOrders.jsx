@@ -9,7 +9,6 @@ function AllOrders() {
   const cartOwner = localStorage.getItem("cartOwner")
     ? localStorage.getItem("cartOwner")
     : [];
-  console.log("cartOwner", cartOwner);
 
   useEffect(() => {
     const getOrders = async () => {
@@ -18,9 +17,9 @@ function AllOrders() {
           `https://ecommerce.routemisr.com/api/v1/orders/user/${cartOwner}`
         );
         setOrders(data.reverse());
-        console.log("data for cart owner", data[0]);
       } catch (error) {
         setError("Failed to load orders. Please try again later.");
+        console.log(error, "error");
       } finally {
         setLoading(false);
       }

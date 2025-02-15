@@ -10,30 +10,24 @@ function ProductDetails() {
   const { category, id } = useParams();
   const [productDetails, setProductDetails] = useState("");
   const [relatedProduct, setRelatedProduct] = useState([]);
-  console.log("productDetails", productDetails);
 
   function getDetails(id) {
     axios
       .get(`https://ecommerce.routemisr.com/api/v1/products/${id}`)
       .then((res) => {
-        console.log("then details", res.data.data);
         setProductDetails(res.data.data);
       })
-      .catch((res) => {
-        console.log("catch details", res);
-      });
+      .catch((res) => {});
   }
 
   function getAllProduct() {
     axios
       .get(`https://ecommerce.routemisr.com/api/v1/products`)
       .then((res) => {
-        console.log("then all product for cat", res.data.data);
         const related = res.data.data.filter(
           (product) => product.category.name === category
         );
         setRelatedProduct(related);
-        console.log(related);
       })
       .catch((res) => {
         console.log("catch details", res);
@@ -148,15 +142,11 @@ function ProductDetails() {
         <Loader />
       )}
 
-      {relatedProduct.length > 0 ? (
-        <Slider {...settings} className="my-5  ">
-          {relatedProduct.map((product) => (
-            <Card product={product} key={product.id} />
-          ))}
-        </Slider>
-      ) : (
-        <Loader />
-      )}
+      <Slider {...settings} className="my-5  ">
+        {relatedProduct.map((product) => (
+          <Card product={product} key={product.id} />
+        ))}
+      </Slider>
     </>
   );
 }

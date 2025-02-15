@@ -16,12 +16,10 @@ function AddToCart({ hidden, productId }) {
           },
         }
       );
-      console.log("add to cart ", data);
 
       setIsLoading(false);
       toast.success(data.message);
     } catch (error) {
-      console.log("add to cart ", error);
       toast.error("The product could not be added to your cart");
     } finally {
       setIsLoading(false);

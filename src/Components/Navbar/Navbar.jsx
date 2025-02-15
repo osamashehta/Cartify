@@ -24,7 +24,7 @@ function Navbar() {
     navigate("/login");
   }
 
-  const menuItems = ["Home", "Cart", "Orders", "Sign Out"];
+  const menuItems = ["Home", "Cart", "Wishlist", "allorders"];
 
   return (
     <NextUiNavbar shouldHideOnScroll onMenuOpenChange={setIsMenuOpen}>
@@ -41,23 +41,56 @@ function Navbar() {
         </NavbarBrand>
 
         {userLogin ? (
-          <NavbarContent className="hidden sm:flex gap-4 " justify="center">
+          <NavbarContent
+            className="hidden sm:flex gap-4  font-bold"
+            justify="center"
+          >
             <NavbarItem>
-              <NavLink to="" color="foreground">
+              <NavLink
+                to=""
+                color="foreground"
+                className={({ isActive }) =>
+                  `text-lg  ${isActive ? "text-blue-500" : ""}`
+                }
+              >
                 Home
               </NavLink>
             </NavbarItem>
 
             <NavbarItem>
-              <Link to="/cart" color="foreground">
+              <NavLink
+                to="/cart"
+                color="foreground"
+                className={({ isActive }) =>
+                  `text-lg  ${isActive ? "text-blue-500" : ""}`
+                }
+              >
                 Cart
-              </Link>
+              </NavLink>
             </NavbarItem>
 
             <NavbarItem>
-              <Link to="/allorders" color="foreground">
+              <NavLink
+                to="/wishlist"
+                color="foreground"
+                className={({ isActive }) =>
+                  `text-lg  ${isActive ? "text-blue-500" : ""}`
+                }
+              >
+                Wishlist
+              </NavLink>
+            </NavbarItem>
+
+            <NavbarItem>
+              <NavLink
+                to="/allorders"
+                color="foreground"
+                className={({ isActive }) =>
+                  `text-lg  ${isActive ? "text-blue-500" : ""}`
+                }
+              >
                 Orders
-              </Link>
+              </NavLink>
             </NavbarItem>
           </NavbarContent>
         ) : null}
@@ -102,8 +135,10 @@ function Navbar() {
       <NavbarMenu>
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
-            <Link
-              className="w-full"
+            <NavLink
+              className={({ isActive }) =>
+                `text-lg w-full ${isActive ? "text-blue-500" : ""}`
+              }
               color={
                 index === 2
                   ? "primary"
@@ -111,17 +146,11 @@ function Navbar() {
                   ? "danger"
                   : "foreground"
               }
-              to={
-                index > 0 && index < menuItems.length - 1
-                  ? `/${item.toLowerCase()}`
-                  : index == menuItems.length - 1
-                  ? "/login"
-                  : "/"
-              }
+              to={index > 0 ? `/${item.toLowerCase()}` : "/"}
               size="lg"
             >
               {item}
-            </Link>
+            </NavLink>
           </NavbarMenuItem>
         ))}
       </NavbarMenu>

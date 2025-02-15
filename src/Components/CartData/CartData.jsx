@@ -11,7 +11,6 @@ function CartData({
   const [productCount, setProductCount] = useState({});
   const [timeoutId, setTimeoutId] = useState(null);
   const [loading, setLoading] = useState(false);
-  console.log("cartData", cartData);
 
   useEffect(() => {
     setLoading(false);
@@ -26,7 +25,6 @@ function CartData({
 
   const handleQuantityChange = (itemId, newCount) => {
     setLoading(true);
-    console.log("loading", loading);
 
     setProductCount((prev) => ({
       ...prev,
@@ -40,7 +38,6 @@ function CartData({
     const newTimeoutId = setTimeout(() => {
       updateCartProductQuantity(itemId, newCount);
     }, 300);
-    console.log("loading after", loading);
     setTimeoutId(newTimeoutId);
   };
 

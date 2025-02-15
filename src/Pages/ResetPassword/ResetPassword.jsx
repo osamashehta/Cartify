@@ -8,33 +8,29 @@ import axios from "axios";
 import { UserContext } from "../../Context/UserContext";
 import toast from "react-hot-toast";
 
-function Register() {
+function ResetPassword() {
   const navigate = useNavigate();
   const { userLogin, setuserLogin } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(false);
   const [isExist, setIsExist] = useState("");
   const initialValues = {
-    name: "",
     email: "",
-    password: "",
-    rePassword: "",
-    phone: "",
+    newPassword: "",
   };
 
   const onSubmit = async () => {
     setIsLoading(true);
 
     try {
-      const { data } = await axios.post(
-        "https://ecommerce.routemisr.com/api/v1/auth/signup",
+      const { data } = await axios.put(
+        "https://ecommerce.routemisr.com/api/v1/auth/resetPassword",
         values
       );
-      if (data.message === "success") {
-        localStorage.setItem("userToken", data.token);
-        setuserLogin(data.token);
-        toast.success(data.message);
-        navigate("/");
-      }
+
+      localStorage.setItem("userToken", data.token);
+      setuserLogin(data.token);
+      toast.success(data.message);
+      navigate("/");
     } catch (apiResponse) {
       setIsExist(apiResponse?.response?.data?.message);
     } finally {
@@ -43,28 +39,18 @@ function Register() {
   };
 
   const validationSchema = Yup.object({
-    name: Yup.string()
-      .required("Name is required")
-      .min(10, "Must be 10 characters or more")
-      .max(30, "Must be 30 characters or less"),
     email: Yup.string()
       .required("Email is required")
       .matches(
         /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
         "Enter valid email: example@example.com"
       ),
-    password: Yup.string()
+    newPassword: Yup.string()
       .required("Password is required")
       .matches(
         /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
         "Minimum eight characters, at least one letter and one number"
       ),
-    rePassword: Yup.string()
-      .required("Re-Password is required")
-      .oneOf([Yup.ref("password")], "Re-Password doesn't match the Password"),
-    phone: Yup.string()
-      .required("Phone is required")
-      .matches(/^(01[0-2,5])[0-9]{8}$/, "Enter Egyptian number"),
   });
 
   const { handleSubmit, handleChange, values, errors, handleBlur, touched } =
@@ -149,28 +135,11 @@ function Register() {
           Account Already Exists
         </div>
       )}
-      <h2 className="w-4/5 md:w-1/3 mx-auto mt-4 text-blue-700 text-center font-bold text-4xl">
-        Register Now
+      <h2 className="w-4/5 md:w-1/3 mx-auto mt-4 text-blue-700 text-center font-semibold text-3xl">
+        Reset Password
       </h2>
       <form onSubmit={handleSubmit} className="w-4/5 md:w-1/3 mx-auto my-5">
         <div className="grid grid-cols-2  gap-4">
-          <div className="col-span-2">
-            <div className="flex w-full flex-wrap items-end md:flex-nowrap mb-6 md:mb-0 gap-4">
-              <Input
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.name}
-                name="name"
-                label="Username"
-                labelPlacement="outside"
-                type="text"
-              />
-            </div>
-            {touched.name && errors.name && (
-              <p className="text-red-500 text-sm mt-1">{errors.name}</p>
-            )}
-          </div>
-
           <div className="col-span-2">
             <div className="flex w-full flex-wrap items-end md:flex-nowrap mb-6 md:mb-0 gap-4">
               <Input
@@ -188,7 +157,7 @@ function Register() {
             )}
           </div>
 
-          <div className="col-span-1">
+          <div className="col-span-2">
             <div className="flex w-full flex-wrap items-end md:flex-nowrap mb-6 md:mb-0 gap-4">
               <Input
                 endContent={
@@ -207,83 +176,30 @@ function Register() {
                 }
                 onChange={handleChange}
                 onBlur={handleBlur}
-                value={values.password}
-                name="password"
-                label="Password"
+                value={values.newPassword}
+                name="newPassword"
+                label="New Password"
                 labelPlacement="outside"
                 type={isVisiblePassword ? "text" : "password"}
               />
             </div>
-            {touched.password && errors.password && (
-              <p className="text-red-500 text-sm mt-1">{errors.password}</p>
+            {touched.newPassword && errors.newPassword && (
+              <p className="text-red-500 text-sm mt-1">{errors.newPassword}</p>
             )}
           </div>
 
-          <div className="col-span-1">
-            <div className="flex w-full flex-wrap items-end md:flex-nowrap mb-6 md:mb-0 gap-4">
-              <Input
-                endContent={
-                  <button
-                    aria-label="toggle password visibility"
-                    className="focus:outline-none"
-                    type="button"
-                    onClick={toggleVisibilityRePassword}
-                  >
-                    {isVisibleRePassword ? (
-                      <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-                    ) : (
-                      <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-                    )}
-                  </button>
-                }
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.rePassword}
-                name="rePassword"
-                label="Re-Password"
-                labelPlacement="outside"
-                type={isVisibleRePassword ? "text" : "password"}
-              />
-            </div>
-            {touched.rePassword && errors.rePassword && (
-              <p className="text-red-500 text-sm mt-1">{errors.rePassword}</p>
-            )}
-          </div>
-
-          <div className="col-span-2">
-            <div className="flex w-full flex-wrap items-end md:flex-nowrap mb-6 md:mb-0 gap-4">
-              <Input
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.phone}
-                name="phone"
-                label="Phone"
-                labelPlacement="outside"
-                type="tel"
-              />
-            </div>
-            {touched.phone && errors.phone && (
-              <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
-            )}
-          </div>
           <Button
             isLoading={isLoading}
             type="submit"
             className="col-span-2 text-white  text-xl"
             color="primary"
           >
-            Register
+            Reset Password
           </Button>
-          <Link
-            to="/login"
-            className="col-span-2 text-blue-700  text-base text-center"
-          >
-            Already have an account?
-          </Link>
         </div>
       </form>
     </>
   );
 }
 
-export default Register;
+export default ResetPassword;

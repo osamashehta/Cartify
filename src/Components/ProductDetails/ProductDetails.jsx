@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Slider from "react-slick";
-import Loader from "../Loader/Loader";
+import ProductDetailsSkeleton from "../ProductDetailsSkeleton/ProductDetailsSkeleton";
 import Card from "../Card/Card";
 import AddToCart from "./../AddToCart/AddToCart";
 
@@ -139,7 +139,7 @@ function ProductDetails() {
           </div>
         </div>
       ) : (
-        <Loader />
+        <ProductDetailsSkeleton />
       )}
 
       <Slider {...settings} className="my-5  ">

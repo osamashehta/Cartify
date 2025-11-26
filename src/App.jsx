@@ -28,11 +28,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: (
-          <ProtectedRoute>
-            <Home />
-          </ProtectedRoute>
-        ),
+        element: <Home />,
       },
       {
         path: "login",
@@ -85,11 +81,7 @@ const router = createBrowserRouter([
 
       {
         path: "productdetails/:category/:id",
-        element: (
-          <ProtectedRoute>
-            <ProductDetails />
-          </ProtectedRoute>
-        ),
+        element: <ProductDetails />,
       },
 
       {
@@ -110,20 +102,12 @@ const router = createBrowserRouter([
       },
       {
         path: "wishlist",
-        element: (
-          <ProtectedRoute>
-            <Wish />
-          </ProtectedRoute>
-        ),
+        element: <Wish />,
       },
 
       {
         path: "*",
-        element: (
-          <ProtectedRoute>
-            <Notfound />
-          </ProtectedRoute>
-        ),
+        element: <Notfound />,
       },
     ],
   },
@@ -140,7 +124,6 @@ function App() {
 
       <UserContextProvider>
         <QueryClientProvider client={queryClient}>
-
           <RouterProvider router={router} />
           <ReactQueryDevtools />
         </QueryClientProvider>

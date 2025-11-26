@@ -1,7 +1,8 @@
 import axios from "axios";
 import Slider from "react-slick";
-import Loader from "../Loader/Loader";
+import CategorySliderSkeleton from "../CategorySliderSkeleton/CategorySliderSkeleton";
 import { useQuery } from "@tanstack/react-query";
+
 function CategorySlider({ handleCategory }) {
   const { data, isLoading } = useQuery({
     queryKey: ["category"],
@@ -50,7 +51,7 @@ function CategorySlider({ handleCategory }) {
   };
 
   if (isLoading) {
-    <Loader />;
+    return <CategorySliderSkeleton />;
   }
   return (
     <>

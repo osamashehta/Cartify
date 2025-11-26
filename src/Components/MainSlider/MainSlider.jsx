@@ -1,6 +1,5 @@
 import Slider from "react-slick";
 import slide1 from "../../assets/slider-image-1.jpeg";
-import slide2 from "../../assets/slider-image-2.jpeg";
 import slide3 from "../../assets/slider-image-3.jpeg";
 import banner1 from "../../assets/grocery-banner.png";
 import banner2 from "../../assets/grocery-banner-2.jpeg";
@@ -24,11 +23,6 @@ function MainSlider() {
             <img
               src={slide1}
               alt="Slide 1"
-              className="w-full h-[200px] md:h-[400px] object-cover"
-            />
-            <img
-              src={slide2}
-              alt="Slide 2"
               className="w-full h-[200px] md:h-[400px] object-cover"
             />
             <img

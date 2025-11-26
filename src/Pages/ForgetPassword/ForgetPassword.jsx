@@ -6,12 +6,12 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { UserContext } from "../../Context/UserContext";
+import toast from "react-hot-toast";
 
 function ForgetPassword() {
   const { userLogin, setuserLogin } = useContext(UserContext);
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
 
   const initialValues = {
     email: "",
@@ -33,11 +33,11 @@ function ForgetPassword() {
     } catch (apiResponse) {
       console.error("Error during registration:", apiResponse);
       if (apiResponse.message == "Network Error") {
-        setError(
+        toast.error(
           "⚠️ Unable to connect. Please check your internet connection."
         );
       } else {
-        setError(apiResponse?.response?.data?.message);
+        toast.error(apiResponse?.response?.data?.message);
       }
     } finally {
       setIsLoading(false);
@@ -65,11 +65,7 @@ function ForgetPassword() {
       <h2 className="w-4/5 md:w-3/5 mx-auto mt-4 text-blue-700 text-center font-bold text-4xl">
         Reset Password
       </h2>
-      {error && (
-        <div className="w-4/5 md:w-3/5 mx-auto mt-3 bg-red-100 text-red-900 text-center rounded-md py-3">
-          {error}
-        </div>
-      )}
+
       <form onSubmit={handleSubmit} className="w-4/5 md:w-3/5 mx-auto my-10">
         <div className="grid grid-cols-2  gap-4">
           <div className="col-span-2">

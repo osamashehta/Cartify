@@ -10,9 +10,8 @@ import toast from "react-hot-toast";
 
 function ResetPassword() {
   const navigate = useNavigate();
-  const {setuserLogin } = useContext(UserContext);
+  const { setuserLogin } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(false);
-  const [isExist, setIsExist] = useState("");
   const initialValues = {
     email: "",
     newPassword: "",
@@ -32,7 +31,7 @@ function ResetPassword() {
       toast.success(data.message);
       navigate("/");
     } catch (apiResponse) {
-      setIsExist(apiResponse?.response?.data?.message);
+      toast.error(apiResponse?.response?.data?.message);
     } finally {
       setIsLoading(false);
     }
@@ -130,11 +129,6 @@ function ResetPassword() {
 
   return (
     <>
-      {isExist && (
-        <div className="w-4/5 md:w-1/3 mx-auto mt-3 bg-red-200 text-red-800 text-center rounded-md py-3">
-          Account Already Exists
-        </div>
-      )}
       <h2 className="w-4/5 md:w-1/3 mx-auto mt-4 text-blue-700 text-center font-semibold text-3xl">
         Reset Password
       </h2>

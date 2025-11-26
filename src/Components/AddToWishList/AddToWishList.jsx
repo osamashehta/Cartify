@@ -2,9 +2,11 @@ import axios from "axios";
 import { useContext } from "react";
 import toast from "react-hot-toast";
 import { UserContext } from "../../Context/UserContext";
+import { useQueryClient } from "@tanstack/react-query";
 
 function AddToWishList({ productId }) {
   const { userLogin } = useContext(UserContext);
+  const queryClient = useQueryClient();
   async function handleAdding(productId) {
     try {
       const { data } = await axios.post(
@@ -18,6 +20,7 @@ function AddToWishList({ productId }) {
       );
 
       toast.success(data.message);
+      queryClient.invalidateQueries({ queryKey: ["wishlist"] });
     } catch (error) {
       toast.error("The product could not be added to your WishList");
     }

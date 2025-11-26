@@ -12,6 +12,7 @@ import {
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
+import EmptyWishlist from "../../Components/EmptyWishlist/EmptyWishlist";
 
 // Icons
 
@@ -73,11 +74,11 @@ function Wish() {
     { name: "ACTIONS", uid: "actions" },
   ];
 
-  let [wishlist, setWishlist] = useState(true);
-  let [loading, setLoading] = useState([]);
+  let [wishlist, setWishlist] = useState([]);
+  // let [loading, setLoading] = useState([]);
   const queryClient = useQueryClient(); // Get the query client
   const getWishlist = async () => {
-    setLoading(true);
+    // setLoading(true);
     const response = await axios.get(
       `https://ecommerce.routemisr.com/api/v1/wishlist`,
       {
@@ -87,7 +88,7 @@ function Wish() {
       }
     );
     setWishlist(response.data.data);
-    setLoading(false);
+    // setLoading(false);
     return response.data.data;
   };
 
@@ -191,14 +192,18 @@ function Wish() {
     }
   }, []);
 
-  if (isLoading || loading)
-    return (
-      <div className="flex justify-center items-center my-12">
-        <span className="loader"></span>
-      </div>
-    );
+  // if (isLoading )
+  //   return (
+  //     <div className="flex justify-center items-center my-12 h-[calc(100vh-12rem)]">
+  //       <span className="loader"></span>
+  //     </div>
+  //   );
 
-  return wishlist.length > 0 ? (
+  return isLoading ? (
+    <div className="flex justify-center items-center my-12 h-[calc(100vh-12rem)]">
+      <span className="loader"></span>
+    </div>
+  ) : data && data.length > 0 ? (
     <Table aria-label="Wishlist Table">
       <TableHeader columns={columns}>
         {(column) => (
@@ -221,9 +226,7 @@ function Wish() {
       </TableBody>
     </Table>
   ) : (
-    <div className="flex justify-center items-center my-12">
-      <h2 className="text-2xl font-bold">Your wishlist is empty</h2>
-    </div>
+    <EmptyWishlist />
   );
 }
 

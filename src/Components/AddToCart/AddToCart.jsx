@@ -1,9 +1,12 @@
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import toast from "react-hot-toast";
+import { UserContext } from "../../Context/UserContext";
 
 function AddToCart({ hidden, productId }) {
   const [isLoading, setIsLoading] = useState(false);
+  const { userLogin } = useContext(UserContext);
+
   async function AddProductToCart(productId) {
     try {
       setIsLoading(true);
@@ -26,10 +29,18 @@ function AddToCart({ hidden, productId }) {
     }
   }
 
+  const handleAddToCart = () => {
+    if (userLogin) {
+      AddProductToCart(productId);
+    } else {
+      toast.error("Please login to add to cart");
+    }
+  };
+
   return (
     <button
       disabled={isLoading}
-      onClick={() => AddProductToCart(productId)}
+      onClick={() => handleAddToCart()}
       className={`${hidden}  text-white bg-blue-500 rounded-md w-full p-2 `}
     >
       {isLoading ? (
